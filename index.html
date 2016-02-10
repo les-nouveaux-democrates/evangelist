@@ -7,9 +7,7 @@
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 	
-	<title>LND - Évangéliste Démocrate</title>
-
-
+	<title>Évangélisateur LND</title>
 
 </head>
 
@@ -28,7 +26,7 @@
 		
 	</div>
 
-	<iframe src="https://docs.google.com/forms/d/1zkU6hPFD3Dwc_renYywaLsFO8yz6wkBW1RouWdLI7C4/viewform?embedded=true&entry.102034060=Antonin&entry.1910720623=GRÊLÉ">Loading...</iframe>
+	<iframe id="addContact" src="#">Loading...</iframe>
 
 </div>
 
@@ -37,12 +35,13 @@
 <style>
 
 a { color: inherit; }
-body { text-align: center; }
-iframe { width: 400px; height: 720px; border: none; }
+body { text-align: center; max-width: 540px; margin: auto; }
+iframe { width: 400px; height: 820px; border: none; }
+
 .target { text-transform: uppercase; display: none; margin: 1em; border: 1px solid black; border-radius: 4px; vertical-align: middle; }
 
-.target .oui, .target .non, .target span {
-	display: table-cell;
+.target span {
+	display: inline-block;
 	vertical-align: middle;
 	padding: 1em 1.5em;
 }
@@ -55,6 +54,7 @@ iframe { width: 400px; height: 720px; border: none; }
 	transition: all .5s;
 }
 
+.target .name { width: 240px; }
 .target .oui { content: "OUI"; margin-right: 1em; }
 .target .non { content: "NON"; margin-left: 1em; }
 

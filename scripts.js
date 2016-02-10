@@ -8,12 +8,14 @@ function showRandomTargets(i) {
 	var result = $('.target').get().sort(function(){ 
 		return Math.round(Math.random())-0.5
 	}).slice(0,i)
-	$(result).fadeIn().css("display","inline-block")
+	$(result).appendTo($('#targets')).slideDown()
 }
 
 function buildTargets(people) {
 
 	var $targets = $('#targets')
+
+	$('#addContact').slideUp()
 
 	// Builds the HTML structure around a portrait.
 	$.each(people, function(i, person) {
@@ -36,7 +38,7 @@ function buildTargets(people) {
 				'	data-need="' + need + '" ' +
 				'>'+
 				'	<span class="oui">OUI</span>' +
-				'	<span>' + prenom + '<br/><strong>' + nom + '</strong></span>' +
+				'	<span class="name">' + prenom + '<br/><strong>' + nom + '</strong></span>' +
 				'	<span class="non">NON</span>' +
 				'</div>'	
 			$targets.append(html)
@@ -48,7 +50,21 @@ function buildTargets(people) {
 	showRandomTargets(3)
 
 	$('.target .non').click(function(){
-		$(this).closest('.target').remove()
+		$(this).closest('.target').slideUp(300, function() {
+			$(this).remove()
+			showRandomTargets(1)
+			$('#addContact').slideUp()
+		})
+	})
+
+	$('.target .oui').click(function(){
+		var docId = "1zkU6hPFD3Dwc_renYywaLsFO8yz6wkBW1RouWdLI7C4"
+			$target = $(this).closest('.target')
+			nom = $target.attr('data-nom').toUpperCase()
+			prenom = $target.attr('data-prenom').toUpperCase()
+			src = "https://docs.google.com/forms/d/" + docId + "/viewform?embedded=true&entry.102034060=" + prenom + "&entry.1910720623=" + nom
+			$target.slideUp()
+		$('#addContact').attr('src', src).slideDown()
 	})
 
 
