@@ -20,13 +20,13 @@
 
 <div>
 	
-	<h2>Connaissez-vous ces personnes?</h2>
+	<h2>Avez-vous le numéro de...</h2>
 
 	<div id="targets">
 		
 	</div>
 
-	<iframe id="addContact" src="#">Loading...</iframe>
+	<div id="addContact" hidden><iframe src="#">Loading...</iframe><span class="close">X</span></div>
 
 </div>
 
@@ -58,6 +58,8 @@ iframe { width: 400px; height: 820px; border: none; }
 .target .oui { content: "OUI"; margin-right: 1em; }
 .target .non { content: "NON"; margin-left: 1em; }
 
+#addContact { position: relative; }
+#addContact .close { position: absolute; right: 15px; top: 10px; }
 
 </style>
 
@@ -81,7 +83,7 @@ $( document ).ready(function() {
 
 
 <!-- SCRIPTS -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+<script src="ressources/third-party/jquery-2.2.0.min.js"></script>
 <script src="scripts.js"></script>
 
 
