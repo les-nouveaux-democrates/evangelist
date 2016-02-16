@@ -4,11 +4,13 @@ function loadTargets() {
 	else buildTargets(callTargets.responseJSON.feed.entry) 
 }
 
-function showRandomTargets(i) {
-	var result = $('.target').get().sort(function(){ 
-		return Math.round(Math.random())-0.5
-	}).slice(0,i)
-	$(result).appendTo($('#targets')).slideDown()
+function showRandomTargets() {
+	if ( $('.target.active').count <= 3 ) {
+		var result = $('.target').get().sort(function(){ 
+			return Math.round(Math.random())-0.5
+		}).slice(0,1)
+		$(result).appendTo($('#targets')).addClass('active').slideDown()
+	}
 }
 
 function buildTargets(people) {
@@ -47,12 +49,12 @@ function buildTargets(people) {
 	})
 
 
-	showRandomTargets(3)
+	showRandomTargets()
 
 	$('.target .non').click(function(){
 		$(this).closest('.target').slideUp(300, function() {
 			$(this).remove()
-			showRandomTargets(1)
+			showRandomTargets()
 			$('#addContact').slideUp()
 		})
 	})
@@ -96,3 +98,5 @@ var doc = "1Eez-1zPKD7UsIUukRQJoH1dVBM6HXNSQaVChxCzwLwE"
 
 callTargets = $.ajax(api)
 loadTargets()
+
+$('#addContact .close').click(function(){ $('#addContact').slideUp() })
