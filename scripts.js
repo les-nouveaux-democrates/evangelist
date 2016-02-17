@@ -5,12 +5,13 @@ function loadTargets() {
 }
 
 function showRandomTargets() {
-	if ( $('.target.active').count <= 3 ) {
+	if ( $('.target.active').length < 3 ) {
 		var result = $('.target').get().sort(function(){ 
 			return Math.round(Math.random())-0.5
 		}).slice(0,1)
 		$(result).appendTo($('#targets')).addClass('active').slideDown()
-	}
+		showRandomTargets()
+	} 
 }
 
 function buildTargets(people) {
@@ -65,8 +66,16 @@ function buildTargets(people) {
 			nom = $target.attr('data-nom').toUpperCase()
 			prenom = $target.attr('data-prenom').toUpperCase()
 			src = "https://docs.google.com/forms/d/" + docId + "/viewform?embedded=true&entry.102034060=" + prenom + "&entry.1910720623=" + nom
-			$target.slideUp()
-		$('#addContact').attr('src', src).slideDown()
+
+		$('#addContact').slideUp(600, function() {
+			$target.slideUp(600, function() {
+				$(this).remove()
+				showRandomTargets()
+			})
+			$('#addContact').slideDown()
+			$('#addContact iframe').attr('src', src)
+			showRandomTargets()
+		})
 	})
 
 
