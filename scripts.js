@@ -109,3 +109,9 @@ callTargets = $.ajax(api)
 loadTargets()
 
 $('#addContact .close').click(function(){ $('#addContact').slideUp() })
+
+$('#searchContacts').typeahead({
+  name: 'accounts',
+  local: ['Audi', 'BMW', 'Bugatti', 'Ferrari', 'Ford', 'Lamborghini', 'Mercedes Benz', 'Porsche', 'Rolls-Royce', 'Volkswagen']
+
+});
